@@ -11,7 +11,7 @@ namespace Assignment_3_skeleton
     {
 		Node head;
 		Node tail;
-        int size;
+        	int size = 0;
 		public Node Head { get => head; set => head = value; }
 		public Node Tail { get => tail; set => tail = value; }
 		public int Size1 { get => size; set => size = value; }
@@ -112,7 +112,7 @@ namespace Assignment_3_skeleton
 
         public int Size()
         {
-            return Size();
+            return size;
         }
     }
 }
