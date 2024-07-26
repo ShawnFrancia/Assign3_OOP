@@ -9,18 +9,36 @@ using System.Xml.Linq;
 
 namespace Assignment_3_skeleton
 {
-    public class SLL : LinkedListADT
+	
+	public class SLL : LinkedListADT
     {
-        public void Append(object data)
+		Node head;
+		Node tail;
+		public Node Head { get => head; set => head = value; }
+		public Node Tail { get => tail; set => tail = value; }
+		
+
+		public void Append(object data)
         {
-            if (IsEmpty())
-            {
-                tail.Successor = new Node(data);
-                tail = tail.Successor;
-            }
-            else
+			Node newtail = new Node(data);
+			if (IsEmpty())
             {
                 head = tail = new Node(data);
+
+			}
+			else
+			{
+                tail.Successor = new Node(data);
+
+				newtail = tail;
+			}
+		}
+
+         public void Print()
+        {
+            for (Node tempNode = head; tempNode != null; tempNode = tempNode.Successor)
+            {
+                Console.WriteLine(tempNode.Element);
             }
         }
 
@@ -36,13 +54,13 @@ namespace Assignment_3_skeleton
 
         public void Delete(int index)
         {
-            throw new NotImplementedException();
-        }
+			
+		}
 
         public int IndexOf(object data)
         {
             int counter = 0;
-        for (Node tempNode = head; tempNode != null; tempNode.Successor)
+            for (Node tempNode = head; tempNode != null; tempNode = tempNode.Successor)
             {
                 if (data.Equals(tempNode.Element))
                 {
@@ -60,19 +78,23 @@ namespace Assignment_3_skeleton
 
         public bool IsEmpty()
         {
-            return (head == null);
-        }
+			return (head == null);
+		}
 
         public void Prepend(object data)
         {
-            head = new Node(o, head);
-            if (tail == null)
+            Node newhead = new Node(data);
+            
+            if (IsEmpty())
             {
-                tail = head;
+                head = tail = newhead;
             }
-            else
-            { }
-        }
+		    else
+            {
+                newhead.Successor = head;
+                head = newhead;
+            }
+		}
 
         public void Replace(object data, int index)
         {
