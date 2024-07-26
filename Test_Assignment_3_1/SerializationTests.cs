@@ -15,6 +15,7 @@ namespace Test_Assignment_3
         [SetUp]
         public void Setup()
         {
+            users = new List<User>();
             users.Append(new User(1, "Joe Blow", "jblow@gmail.com", "password"));
             users.Append(new User(2, "Joe Schmoe", "joe.schmoe@outlook.com", "abcdef"));
             users.Append(new User(3, "Colonel Sanders", "chickenlover1890@gmail.com", "kfc5555"));
