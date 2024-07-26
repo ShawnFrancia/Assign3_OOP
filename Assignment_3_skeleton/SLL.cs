@@ -1,11 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Assignment_3_skeleton
 {
@@ -14,27 +11,32 @@ namespace Assignment_3_skeleton
     {
 		Node head;
 		Node tail;
+        int size;
 		public Node Head { get => head; set => head = value; }
 		public Node Tail { get => tail; set => tail = value; }
-		
+		public int Size1 { get => size; set => size = value; }
 
 		public void Append(object data)
         {
+			// Create a new node with the given data
 			Node newtail = new Node(data);
-			if (IsEmpty())
+			// If the list is empty, both head and tail point to the new node
+			if (!IsEmpty())
             {
-                head = tail = new Node(data);
+				//set the current tail's Successor to the new node
+				tail.Successor = new Node(data);
 
+				// Update the tail to the new node
+				tail = tail.Successor;
 			}
 			else
 			{
-                tail.Successor = new Node(data);
-
-				newtail = tail;
+				head = tail = new Node(data);
 			}
+            size++;
 		}
-
-         public void Print()
+		
+		public void Print()
         {
             for (Node tempNode = head; tempNode != null; tempNode = tempNode.Successor)
             {
@@ -45,6 +47,7 @@ namespace Assignment_3_skeleton
         public void Clear()
         {
             head = null; tail = null;
+            size = 0;
         }
 
         public bool Contains(object data)
@@ -94,6 +97,7 @@ namespace Assignment_3_skeleton
                 newhead.Successor = head;
                 head = newhead;
             }
+            size++;
 		}
 
         public void Replace(object data, int index)
@@ -108,7 +112,7 @@ namespace Assignment_3_skeleton
 
         public int Size()
         {
-            throw new NotImplementedException();
+            return Size();
         }
     }
 }
